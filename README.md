@@ -14,6 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+![Screenshot](images/screenshot.png?raw=true "Running under KDE with a dark theme")
+
 # Features
 
 ## Open and Transparent
@@ -35,6 +37,8 @@ just where you have left it.
 For those who use books to fall asleep (!) there's a sleep timer with
 a gentle fadeout at the end of its time.
 
+![Screenshot](images/screenshot-sleep-timer.png?raw=true "Sleep timer tab")
+
 ## Speed Adjustment
 If the book/podcast is too boring or too fast you can simply adjust the
 speed while keeping the natural pitch.
@@ -42,6 +46,8 @@ speed while keeping the natural pitch.
 ## Bookmarks
 If you just heard something really amazing, don't forget to bookmark it.
 You can also set a custom name for your bookmark to better remember it.
+
+![Screenshot](images/screenshot-bookmarks.png?raw=true "Bookmarks tab")
 
 ## UNIX Friendly
 Tired of heavy software packages written in scripting languages? Qtible
