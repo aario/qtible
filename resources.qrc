@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/graphics">
+        <file>images/rewind.svg</file>
+        <file>images/fastforward.svg</file>
+        <file>images/play.svg</file>
+        <file>images/pause.svg</file>
+        <file>images/play-button.svg</file>
+        <file>images/note-sticky.svg</file>
+        <file>images/bookmark.svg</file>
+        <file>images/book.svg</file>
+        <file>images/clock.svg</file>
+        <file>images/signal.svg</file>
+        <file>images/rotate-left.svg</file>
+        <file>images/gauge.svg</file>
+        <file>images/volume-xmark.svg</file>
+        <file>images/spectrom.svg</file>
+        <file>images/folder-tree.svg</file>
+        <file>images/spectrom-empty.svg</file>
+        <file>images/icon.svg</file>
+    </qresource>
+</RCC>

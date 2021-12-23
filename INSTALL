@@ -1,0 +1,26 @@
+Requirements
+=================================
+This application is merely written for Qt5. So better to compile it with
+version 5 of below qt libraries.
+Dependencies are :
+    qt5-qmake
+    libqt5-dev
+    libmpv-dev
+
+For instance to install dependencies under debian bullseye:
+    sudo apt-get update
+    sudo apt-get install qt5-qmake libqt5-dev libmpv-dev mpv
+
+Since the software is heavily using symbolic links, it is intended to only work with Linux.
+OSX might also support it but I did not try that!
+
+Build
+=================================
+Finally to build it inside source folder run:
+    qmake
+    make
+
+Install
+=================================
+To install:
+    sudo make install

@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>651</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/graphics/images/icon.svg</normaloff>:/graphics/images/icon.svg</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitterMain">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTabWidget" name="tabWidgetLeft">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <widget class="QWidget" name="tabLibrary">
+        <attribute name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/graphics/images/folder-tree.svg</normaloff>:/graphics/images/folder-tree.svg</iconset>
+        </attribute>
+        <attribute name="title">
+         <string/>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayoutTreeViewLibrary">
+         <item>
+          <widget class="TreeViewLibrary" name="treeViewLibrary"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tabBookmarks">
+        <attribute name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/graphics/images/bookmark.svg</normaloff>:/graphics/images/bookmark.svg</iconset>
+        </attribute>
+        <attribute name="title">
+         <string/>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayoutTreeViewBookmarks">
+         <item>
+          <widget class="TreeViewBookmarks" name="treeViewBookmarks"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frameRight">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QSplitter" name="splitterRight">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>4</number>
+          </property>
+          <widget class="QTabWidget" name="tabWidgetRight">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>1</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="currentIndex">
+            <number>1</number>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>16</height>
+            </size>
+           </property>
+           <widget class="QWidget" name="tabAlbomArt">
+            <attribute name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/graphics/images/play.svg</normaloff>:/graphics/images/play.svg</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>Album Art</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0">
+              <layout class="QVBoxLayout" name="verticalLayoutSeekBar">
+               <item>
+                <widget class="QLabel" name="labelPlayerTitle">
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacerSeekBarTop">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalSeekBar">
+                 <item>
+                  <spacer name="verticalSpacerSeekBarLeft">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="LabelSeekBar" name="labelSeekBar">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="resources.qrc">:/graphics/images/spectrom-empty.svg</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacerSeekBarRight">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutPlayerStatus">
+                 <item>
+                  <widget class="QLCDNumber" name="lcdNumberPlayerStatus">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="digitCount">
+                    <number>14</number>
+                   </property>
+                   <property name="segmentStyle">
+                    <enum>QLCDNumber::Flat</enum>
+                   </property>
+                   <property name="value" stdset="0">
+                    <double>0.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutAddBookmark">
+                 <item>
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonAddBookMarkWithIcon">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777209</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>24</pointsize>
+                    </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">:hover:!pressed {
+border-style: solid;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="resources.qrc">
+                     <normaloff>:/graphics/images/bookmark.svg</normaloff>:/graphics/images/bookmark.svg</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonAddBookmark">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">:hover:!pressed {
+border-style: solid;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Add Bookmark</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer name="verticalSpacerSeekBarButtom">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tabSleepTimer">
+            <attribute name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/graphics/images/clock.svg</normaloff>:/graphics/images/clock.svg</iconset>
+            </attribute>
+            <attribute name="title">
+             <string/>
+            </attribute>
+            <attribute name="toolTip">
+             <string>Sleep Timer</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QLCDNumber" name="lcdNumberSleepTimer">
+                 <property name="minimumSize">
+                  <size>
+                   <width>200</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>0</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>0</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="0" column="1">
+                <widget class="QPushButton" name="pushButtonTimer30m">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer30m{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(0, 170, 255);
+border-style: solid;
+}
+QPushButton#pushButtonTimer30m:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer30m:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>30m</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="5">
+                <widget class="QPushButton" name="pushButtonTimer5s">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer5s{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(0, 170, 255);
+border-style: solid;
+}
+QPushButton#pushButtonTimer5s:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer5s:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>5s</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="7">
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="3">
+                <widget class="QPushButton" name="pushButtonTimer5m">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer5m{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(0, 170, 255);
+border-style: solid;
+}
+QPushButton#pushButtonTimer5m:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer5m:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>5m</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="5">
+                <widget class="QPushButton" name="pushButtonTimer00s">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer00s{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(170, 170, 170);
+border-style: solid;
+}
+QPushButton#pushButtonTimer00s:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer00s:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>00s</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QPushButton" name="pushButtonTimer30s">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer30s{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(0, 170, 255);
+border-style: solid;
+}
+QPushButton#pushButtonTimer30s:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer30s:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>30s</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="pushButtonTimer10m">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>25</pointsize>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton#pushButtonTimer10m{
+border-radius: 15px;
+border-width:4px;
+border-color: rgb(0, 170, 255);
+border-style: solid;
+}
+QPushButton#pushButtonTimer10m:hover:!pressed {
+border-color: red;
+}
+QPushButton#pushButtonTimer10m:hover:pressed {
+color: red;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>10m</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="horizontalLayoutWidget">
+           <layout class="QHBoxLayout" name="horizontalLayoutBottomRight">
+            <item>
+             <spacer name="horizontalSpacerPlayerLeft">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <spacer name="verticalSpacerPlayerLeft">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayoutPlayerButtons">
+              <item>
+               <spacer name="verticalSpacerPlayerButtonsTop">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayoutPlayerButtons">
+                <item>
+                 <widget class="QPushButton" name="pushButtonPlayerRewind">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>106</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">:hover:!pressed {
+border-radius: 50px;
+border-width:4px;
+border-color: red;
+border-style: solid;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/graphics/images/rewind.svg</normaloff>:/graphics/images/rewind.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>106</width>
+                    <height>90</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                  <property name="iconName" stdset="0">
+                   <string>rewind</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonPlayerPlayPause">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>106</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">:hover:!pressed {
+border-radius: 50px;
+border-width:4px;
+border-color: red;
+border-style: solid;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/graphics/images/play-button.svg</normaloff>:/graphics/images/play-button.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>106</width>
+                    <height>90</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                  <property name="iconName" stdset="0">
+                   <string>play-button</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonPlayerFastForward">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>106</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">:hover:!pressed {
+border-radius: 50px;
+border-width:4px;
+border-color: red;
+border-style: solid;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/graphics/images/fastforward.svg</normaloff>:/graphics/images/fastforward.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>106</width>
+                    <height>90</height>
+                   </size>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                  <property name="iconName" stdset="0">
+                   <string>fastforward</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="verticalSpacerPlayerButtonsBottom">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayoutPlayerControls">
+                <item>
+                 <widget class="QLabel" name="labelCurrentVolume">
+                  <property name="text">
+                   <string>100%</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayoutVolumeControl">
+                  <item>
+                   <widget class="QLabel" name="labelVolume">
+                    <property name="maximumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>Volume</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="resources.qrc">:/graphics/images/signal.svg</pixmap>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="horizontalSliderVolume">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="maximum">
+                     <number>100</number>
+                    </property>
+                    <property name="value">
+                     <number>100</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonVolumeMute">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Mute</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">:hover:!pressed {
+border-radius: 9px;
+border-width:1px;
+border-color: red;
+background-color:red;
+border-style: solid;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resources.qrc">
+                      <normaloff>:/graphics/images/volume-xmark.svg</normaloff>:/graphics/images/volume-xmark.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayoutSpeedControl">
+                  <item>
+                   <widget class="QLabel" name="labelSpeed">
+                    <property name="maximumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string/>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="pixmap">
+                     <pixmap resource="resources.qrc">:/graphics/images/gauge.svg</pixmap>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="horizontalSliderSpeed">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="minimum">
+                     <number>50</number>
+                    </property>
+                    <property name="maximum">
+                     <number>200</number>
+                    </property>
+                    <property name="value">
+                     <number>100</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButtonSpeedReset">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Reset speed</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">:hover:!pressed {
+border-radius: 9px;
+border-width:1px;
+border-color: red;
+background-color:red;
+border-style: solid;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resources.qrc">
+                      <normaloff>:/graphics/images/rotate-left.svg</normaloff>:/graphics/images/rotate-left.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QLabel" name="labelCurrentSpeed">
+                  <property name="text">
+                   <string>1x</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacerPlayerRight">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <spacer name="horizontalSpacerPlayerRight">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionAdd_folder"/>
+    <addaction name="action_refresh"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actionE_xigt"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
+    <addaction name="actionDonate"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdd_folder">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/graphics/images/bookmark-copy.svg</normaloff>:/graphics/images/bookmark-copy.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A, Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionAdd_folder_with_subfolders">
+   <property name="text">
+    <string>Add folder with &amp;subfolders</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>&amp;Preferences</string>
+   </property>
+  </action>
+  <action name="actionE_xigt">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q, Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionDonate">
+   <property name="text">
+    <string>Donate</string>
+   </property>
+  </action>
+  <action name="action_refresh">
+   <property name="text">
+    <string>&amp;Refresh</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionMark_as_finished">
+   <property name="text">
+    <string>Mark as finished</string>
+   </property>
+  </action>
+  <action name="actionRename_bookmark">
+   <property name="text">
+    <string>&amp;Rename</string>
+   </property>
+  </action>
+  <action name="actionDelete_bookmark">
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+  </action>
+  <action name="actionReset_progress">
+   <property name="text">
+    <string>Reset progress</string>
+   </property>
+  </action>
+  <action name="actionRemove_folder">
+   <property name="text">
+    <string>Remove folder</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TreeViewLibrary</class>
+   <extends>QTreeView</extends>
+   <header>treeviewlibrary.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LabelSeekBar</class>
+   <extends>QLabel</extends>
+   <header>labelseekbar.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TreeViewBookmarks</class>
+   <extends>QTreeView</extends>
+   <header>treeviewbookmarks.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
