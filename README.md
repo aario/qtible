@@ -1,5 +1,5 @@
 # Qtible
-Qtible is the worlds best audio book player based for Linux on Qt.
+Qtible is the world's best audio book player, running native on Linux, based on Qt.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
