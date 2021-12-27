@@ -57,8 +57,15 @@ private slots:
     void on_tabWidgetLeft_currentChanged(int index);
     void on_actionE_xigt_triggered();
 
+    void on_actionAbout_triggered();
+
+    void on_actionAbout_Qt_triggered();
+
+    void on_actionDonate_triggered();
+
 private:
     const QString APPLICATION_TITLE = "Qtible";
+    const QString DONATION_URL = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJTM2GDGPEFHA";
 
     Ui::MainWindow *ui;
     MediaPlayer *mplayer = NULL;

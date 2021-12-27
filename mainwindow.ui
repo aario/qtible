@@ -1187,6 +1187,9 @@ border-style: solid;
    <property name="text">
     <string>About</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="actionAbout_Qt">
    <property name="text">

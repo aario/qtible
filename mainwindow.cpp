@@ -8,6 +8,8 @@
 #include <QTime>
 #include <QDebug>
 #include <QTimer>
+#include <QMessageBox>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -341,4 +343,31 @@ void MainWindow::on_tabWidgetLeft_currentChanged(int index)
 void MainWindow::on_actionE_xigt_triggered()
 {
     close();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(
+                this,
+                "About Qtible",
+                "<h1>Qtible</h1>"
+                "Qtible is the world's best audio book player, running native on Linux, based on Qt.<br/>"
+                "<br/>"
+                "Copyright 2021 Aario Shahbany<br/>"
+                "<br/>"
+                "This program is distributed in the hope that it will be useful,"
+                "but WITHOUT ANY WARRANTY; without even the implied warranty of"
+                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"
+                "GNU General Public License for more details.<br/>"
+                );
+}
+
+void MainWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this);
+}
+
+void MainWindow::on_actionDonate_triggered()
+{
+    QDesktopServices::openUrl(QUrl(DONATION_URL));
 }
