@@ -1139,8 +1139,6 @@ border-style: solid;
     <addaction name="actionAdd_folder"/>
     <addaction name="action_refresh"/>
     <addaction name="separator"/>
-    <addaction name="actionSettings"/>
-    <addaction name="separator"/>
     <addaction name="actionE_xigt"/>
    </widget>
    <widget class="QMenu" name="menu_Help">

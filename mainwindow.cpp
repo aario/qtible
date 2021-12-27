@@ -337,3 +337,8 @@ void MainWindow::on_tabWidgetLeft_currentChanged(int index)
     Q_UNUSED(index)
     adjustWidgetSizes();
 }
+
+void MainWindow::on_actionE_xigt_triggered()
+{
+    close();
+}

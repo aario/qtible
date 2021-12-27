@@ -55,6 +55,8 @@ private slots:
     void onMplayerAddBookmark(QString path, QString name, int seconds);
 
     void on_tabWidgetLeft_currentChanged(int index);
+    void on_actionE_xigt_triggered();
+
 private:
     const QString APPLICATION_TITLE = "Qtible";
 
