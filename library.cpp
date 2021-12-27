@@ -228,21 +228,6 @@ void Library::saveProgressFile(QFileInfo fileInfo, Progress *progress) const
     progress->setChanged(false);
 }
 
-void Library::scanProgressInChildren(const QModelIndex *index, Progress *progress)
-{
-    QModelIndex child;
-    int row = 0;
-    while (1) {
-        child = Library::index(row, COLUMN_PATH, *index);
-        if (!child.isValid())
-            break;
-        Progress *childProgress = getProgress(&child);
-        progress->setProgress(progress->getProgress() + childProgress->getProgress());
-        progress->setTotal(progress->getTotal() + childProgress->getTotal());
-        row++;
-    }
-}
-
 Progress *Library::getProgress(const QModelIndex *index)
 {
     QString filePath = getPathForIndex(index);
@@ -292,14 +277,13 @@ Progress *Library::getProgress(QString filePath)
     if (progressCache.contains(filePath))
         return progressCache.value(filePath);
 
-    Progress *progress = new Progress();
-    progressCache.insert(filePath, progress);
-
     if (QFileInfo(filePath).isDir()) {
-        QModelIndex index = indexByPath(filePath);
-        scanProgressInChildren(&index, progress);
+        Progress *progress = new Progress();
         return progress;
     }
+
+    Progress *progress = new Progress();
+    progressCache.insert(filePath, progress);
 
     QFileInfo fileInfo(filePath);
     QString progressFilePath = getProgressFilePath(fileInfo);
