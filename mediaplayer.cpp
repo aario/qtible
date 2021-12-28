@@ -439,6 +439,7 @@ void MediaPlayer::onMpvFileLoaded()
 
 void MediaPlayer::onMpvEndFile()
 {
+    currentPositionSeconds = length;
     updateUI();
     closeUI();
     emit finished(path);

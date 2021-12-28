@@ -29,7 +29,6 @@ void TreeViewBookmarks::resizeColumns()
     int w = width();
     int columnNameWidth = w * COLUMN_WIDTH_PERCENT_NAME / 100;
     int columnTimeWidth = w * COLUMN_WIDTH_PERCENT_TIME / 100;
-    qInfo() << "Resize: " << w << columnNameWidth << columnTimeWidth;
     setColumnWidth(Bookmarks::COLUMN_NAME, columnNameWidth);
     setColumnWidth(Bookmarks::COLUMN_TIME, columnTimeWidth);
 }
