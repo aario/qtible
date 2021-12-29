@@ -3,8 +3,8 @@
 
 #include <QKeyEvent>
 #include <QTreeView>
-#include <library.h>
-#include "mediaplayer.h"
+#include "treeviews/library/treeviewsourcelibrary.h"
+#include "mediaplayer/mediaplayer.h"
 
 class TreeViewLibrary : public QTreeView
 {
@@ -29,7 +29,7 @@ private:
     const int COLUMN_WIDTH_PERCENT_PATH = 45;
     const int COLUMN_WIDTH_PERCENT_LENGTH = 25;
     const int COLUMN_WIDTH_PERCENT_PROGRESS = 25;
-    Library library;
+    TreeViewSourceLibrary library;
     QString getSelectedFilePath();
     void openSelected();
 private slots:

@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "mediaplayer.h"
+#include "mediaplayer/mediaplayer.h"
 #include "sleeptimer.h"
 
 #include <QMainWindow>

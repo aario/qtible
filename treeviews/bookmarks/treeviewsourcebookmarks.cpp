@@ -1,14 +1,14 @@
-#include "bookmarks.h"
-#include "library.h"
+#include "treeviews/bookmarks/treeviewsourcebookmarks.h"
+#include "treeviews/library/treeviewsourcelibrary.h"
 #include "utils.h"
 
 #include <QDir>
 #include <QVariant>
 #include <QFileInfo>
 #include <QtDebug>
-#include "mediaplayer.h"
+#include "mediaplayer/mediaplayer.h"
 
-Bookmarks::Bookmarks():
+TreeViewSourceBookmarks::TreeViewSourceBookmarks():
     QSortFilterProxyModel(),
     fileSystemModel()
 {
@@ -25,28 +25,28 @@ Bookmarks::Bookmarks():
                 &fileSystemModel,
                 &QFileSystemModel::directoryLoaded,
                 this,
-                &Bookmarks::onDirectoryLoaded
+                &TreeViewSourceBookmarks::onDirectoryLoaded
                 );
 }
 
-QString Bookmarks::rootPath()
+QString TreeViewSourceBookmarks::rootPath()
 {
     return fileSystemModel.rootPath();
 }
 
-QModelIndex Bookmarks::indexByPath(const QString &path) const
+QModelIndex TreeViewSourceBookmarks::indexByPath(const QString &path) const
 {
     return mapFromSource(
                 fileSystemModel.index(path, COLUMN_NAME)
                 );
 }
 
-Bookmark Bookmarks::readBookmark(QString bookmarkFilePath) const
+Bookmark TreeViewSourceBookmarks::readBookmark(QString bookmarkFilePath) const
 {
     return Bookmark(bookmarkFilePath);
 }
 
-Bookmark Bookmarks::getSelectedBookmark(int selectionRow, QModelIndex selectionParent) const
+Bookmark TreeViewSourceBookmarks::getSelectedBookmark(int selectionRow, QModelIndex selectionParent) const
 {
     QModelIndex selectionIndex = index(selectionRow, COLUMN_NAME, selectionParent);
     if (!selectionIndex.isValid()) {
@@ -66,7 +66,7 @@ Bookmark Bookmarks::getSelectedBookmark(int selectionRow, QModelIndex selectionP
                 );
 }
 
-void Bookmarks::notifyUpdate()
+void TreeViewSourceBookmarks::notifyUpdate()
 {
     QModelIndex firstCell = index(0, COLUMN_NAME);
     QModelIndex root = firstCell.parent();
@@ -75,12 +75,12 @@ void Bookmarks::notifyUpdate()
     emit dataChanged(firstCell, lastCell);
 }
 
-bool Bookmarks::isFolder(QModelIndex index) const
+bool TreeViewSourceBookmarks::isFolder(QModelIndex index) const
 {
     return fileSystemModel.isDir(mapToSource(index));
 }
 
-void Bookmarks::saveBookmark(Bookmark bookmark)
+void TreeViewSourceBookmarks::saveBookmark(Bookmark bookmark)
 {
     QString sourcePath = bookmark.getSourcePath();
     qInfo() << "Writing bookmark to file" << sourcePath;
@@ -95,7 +95,7 @@ void Bookmarks::saveBookmark(Bookmark bookmark)
                 );
 }
 
-void Bookmarks::deleteBookmark(Bookmark bookmark)
+void TreeViewSourceBookmarks::deleteBookmark(Bookmark bookmark)
 {
     QString sourcePath = bookmark.getSourcePath();
     qInfo() << "Deleting bookmark file" << sourcePath;
@@ -103,7 +103,7 @@ void Bookmarks::deleteBookmark(Bookmark bookmark)
     bookmarkFile.remove();
 }
 
-void Bookmarks::addBookmark(
+void TreeViewSourceBookmarks::addBookmark(
         QString targetPath,
         QString name,
         int seconds
@@ -121,12 +121,12 @@ void Bookmarks::addBookmark(
     notifyUpdate();
 }
 
-bool Bookmarks::isFolder(int sourceRow, const QModelIndex &sourceParent) const
+bool TreeViewSourceBookmarks::isFolder(int sourceRow, const QModelIndex &sourceParent) const
 {
     return fileSystemModel.isDir(sourceModel()->index(sourceRow, COLUMN_NAME, sourceParent));
 }
 
-bool Bookmarks::filterAcceptsRow(
+bool TreeViewSourceBookmarks::filterAcceptsRow(
         int sourceRow,
         const QModelIndex &sourceParent
         ) const {
@@ -148,7 +148,7 @@ bool Bookmarks::filterAcceptsRow(
     return fileName.startsWith(FILE_PREFIX_BOOKMARK);
 }
 
-QVariant Bookmarks::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant TreeViewSourceBookmarks::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         switch (section) {
@@ -160,7 +160,7 @@ QVariant Bookmarks::headerData(int section, Qt::Orientation orientation, int rol
     return QSortFilterProxyModel::headerData(section, orientation, role);
 }
 
-QString Bookmarks::getPathForIndex(const QModelIndex *index) const
+QString TreeViewSourceBookmarks::getPathForIndex(const QModelIndex *index) const
 {
     return fileSystemModel.filePath(
                 mapToSource(*index)
@@ -168,12 +168,12 @@ QString Bookmarks::getPathForIndex(const QModelIndex *index) const
 }
 
 
-QVariant Bookmarks::dataForColumnName(const QModelIndex &index) const
+QVariant TreeViewSourceBookmarks::dataForColumnName(const QModelIndex &index) const
 {
     return readBookmark(getPathForIndex(&index)).getName();
 }
 
-Bookmark Bookmarks::getBookmarkForIndex(QModelIndex index) const
+Bookmark TreeViewSourceBookmarks::getBookmarkForIndex(QModelIndex index) const
 {
     return readBookmark(
                 getPathForIndex(
@@ -182,19 +182,19 @@ Bookmark Bookmarks::getBookmarkForIndex(QModelIndex index) const
                 );
 }
 
-QVariant Bookmarks::dataForColumnTime(const QModelIndex &index) const
+QVariant TreeViewSourceBookmarks::dataForColumnTime(const QModelIndex &index) const
 {
     return Utils::formatTime(
                 getBookmarkForIndex(index).getSeconds()
                 );
 }
 
-void Bookmarks::onDirectoryLoaded(const QString &path)
+void TreeViewSourceBookmarks::onDirectoryLoaded(const QString &path)
 {
     emit directoryLoaded(path);
 }
 
-bool Bookmarks::folderHasBookmarks(QString folderPath) const
+bool TreeViewSourceBookmarks::folderHasBookmarks(QString folderPath) const
 {
     QDir dir(folderPath);
     QStringList nameFilters;
@@ -217,7 +217,7 @@ bool Bookmarks::folderHasBookmarks(QString folderPath) const
     return false;
 }
 
-QString Bookmarks::makeBookmarkFilePath(QString targetPath)
+QString TreeViewSourceBookmarks::makeBookmarkFilePath(QString targetPath)
 {
     QString result;
     int counter = 0;
@@ -233,7 +233,7 @@ QString Bookmarks::makeBookmarkFilePath(QString targetPath)
     return result;
 }
 
-bool Bookmarks::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool TreeViewSourceBookmarks::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     if (left.column() != COLUMN_NAME || isFolder(left) || isFolder(right))
         return QSortFilterProxyModel::lessThan(left, right);
@@ -254,7 +254,7 @@ bool Bookmarks::lessThan(const QModelIndex &left, const QModelIndex &right) cons
     return leftSeconds < rightSeconds;
 }
 
-QVariant Bookmarks::data(const QModelIndex &index, int role) const
+QVariant TreeViewSourceBookmarks::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole) {
         if (isFolder(index))

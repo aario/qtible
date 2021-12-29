@@ -2,8 +2,8 @@
 #define TREEVIEWBOOKMARKS_H
 
 #include <QTreeView>
-#include <bookmarks.h>
-#include "bookmark.h"
+#include "treeviews/bookmarks/treeviewsourcebookmarks.h"
+#include "models/bookmark.h"
 
 class TreeViewBookmarks : public QTreeView
 {
@@ -22,7 +22,7 @@ public:
 private:
     const int COLUMN_WIDTH_PERCENT_NAME = 75;
     const int COLUMN_WIDTH_PERCENT_TIME = 20;
-    Bookmarks bookmarks;
+    TreeViewSourceBookmarks bookmarks;
 };
 
 #endif // TREEVIEWBOOKMARKS_H

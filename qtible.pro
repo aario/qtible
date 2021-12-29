@@ -14,36 +14,36 @@ LIBS += -lsqlite3
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    bookmark.cpp \
-    bookmarks.cpp \
-    itemdelegatelibrary.cpp \
-    labelseekbar.cpp \
-    library.cpp \
-    mediaplayer.cpp \
-    mpveventloop.cpp \
+    models/bookmark.cpp \
+    treeviews/bookmarks/treeviewsourcebookmarks.cpp \
+    treeviews/library/itemdelegatelibrary.cpp \
+    mediaplayer/labelseekbar.cpp \
+    treeviews/library/treeviewsourcelibrary.cpp \
+    mediaplayer/mediaplayer.cpp \
+    mediaplayer/mpveventloop.cpp \
     sleeptimer.cpp \
-    treeviewbookmarks.cpp \
-    treeviewlibrary.cpp \
+    treeviews/bookmarks/treeviewbookmarks.cpp \
+    treeviews/library/treeviewlibrary.cpp \
     main.cpp \
     mainwindow.cpp \
-    progress.cpp \
+    models/progress.cpp \
     settings.cpp \
     utils.cpp
 
 HEADERS += \
-    bookmark.h \
-    bookmarks.h \
-    itemdelegatelibrary.h \
-    labelseekbar.h \
-    library.h \
+    models/bookmark.h \
+    treeviews/bookmarks/treeviewsourcebookmarks.h \
+    treeviews/library/itemdelegatelibrary.h \
+    mediaplayer/labelseekbar.h \
+    treeviews/library/treeviewsourcelibrary.h \
     mainwindow.h \
-    mediaplayer.h \
-    mpveventloop.h \
-    progress.h \
+    mediaplayer/mediaplayer.h \
+    mediaplayer/mpveventloop.h \
+    models/progress.h \
     settings.h \
     sleeptimer.h \
-    treeviewbookmarks.h \
-    treeviewlibrary.h \
+    treeviews/bookmarks/treeviewbookmarks.h \
+    treeviews/library/treeviewlibrary.h \
     utils.h
 
 FORMS += \

@@ -1,5 +1,5 @@
-#ifndef LIBRARY_H
-#define LIBRARY_H
+#ifndef TREE_VIEW_SOURCE_LIBRARY_H
+#define TREE_VIEW_SOURCE_LIBRARY_H
 
 #include <QFileSystemModel>
 #include <QMap>
@@ -9,13 +9,13 @@
 #include <QQueue>
 #include <settings.h>
 #include <QTimer>
-#include "progress.h"
+#include "models/progress.h"
 
-class Library : public QSortFilterProxyModel
+class TreeViewSourceLibrary : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    Library();
+    TreeViewSourceLibrary();
     static const int COLUMN_PATH = 0;
     static const int COLUMN_LENGTH = 2;
     static const int COLUMN_PROGRESS = 3;
@@ -65,4 +65,4 @@ private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 };
 
-#endif // LIBRARY_H
+#endif // TREE_VIEW_SOURCE_LIBRARY_H

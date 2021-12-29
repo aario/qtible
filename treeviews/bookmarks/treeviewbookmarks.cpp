@@ -12,12 +12,12 @@ TreeViewBookmarks::TreeViewBookmarks(QWidget *parent): QTreeView(parent)
     hideColumn(1);
     hideColumn(2);
     setSortingEnabled(true);
-    sortByColumn(Bookmarks::COLUMN_NAME, Qt::SortOrder::AscendingOrder);
+    sortByColumn(TreeViewSourceBookmarks::COLUMN_NAME, Qt::SortOrder::AscendingOrder);
 }
 
 Bookmark TreeViewBookmarks::getSelectedBookmark()
 {
-    QModelIndex index = selectedIndexes()[Bookmarks::COLUMN_NAME];
+    QModelIndex index = selectedIndexes()[TreeViewSourceBookmarks::COLUMN_NAME];
     int row = index.row();
     QModelIndex parent = index.parent();
 
@@ -29,8 +29,8 @@ void TreeViewBookmarks::resizeColumns()
     int w = width();
     int columnNameWidth = w * COLUMN_WIDTH_PERCENT_NAME / 100;
     int columnTimeWidth = w * COLUMN_WIDTH_PERCENT_TIME / 100;
-    setColumnWidth(Bookmarks::COLUMN_NAME, columnNameWidth);
-    setColumnWidth(Bookmarks::COLUMN_TIME, columnTimeWidth);
+    setColumnWidth(TreeViewSourceBookmarks::COLUMN_NAME, columnNameWidth);
+    setColumnWidth(TreeViewSourceBookmarks::COLUMN_TIME, columnTimeWidth);
 }
 
 void TreeViewBookmarks::addBookmark(
@@ -53,7 +53,7 @@ bool TreeViewBookmarks::isFolder(QModelIndex index)
 
 void TreeViewBookmarks::renameSelectedBookmark()
 {
-    QModelIndex index = selectedIndexes()[Bookmarks::COLUMN_NAME];
+    QModelIndex index = selectedIndexes()[TreeViewSourceBookmarks::COLUMN_NAME];
     Bookmark bookmark = bookmarks.getSelectedBookmark(index.row(), index.parent());
     bool ok;
     QString name = QInputDialog::getText(
@@ -83,7 +83,7 @@ void TreeViewBookmarks::deleteSelectedBookmark()
                 ) != QMessageBox::Yes)
         return;
 
-    QModelIndex index = selectedIndexes()[Bookmarks::COLUMN_NAME];
+    QModelIndex index = selectedIndexes()[TreeViewSourceBookmarks::COLUMN_NAME];
     Bookmark bookmark = bookmarks.getSelectedBookmark(index.row(), index.parent());
 
     bookmarks.deleteBookmark(bookmark);

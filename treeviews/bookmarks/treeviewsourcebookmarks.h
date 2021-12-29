@@ -1,18 +1,18 @@
-#ifndef BOOKMARKS_H
-#define BOOKMARKS_H
+#ifndef TREE_VIEW_SOURCE_BOOKMARKS_H
+#define TREE_VIEW_SOURCE_BOOKMARKS_H
 
 #include <QFileSystemModel>
 #include <QModelIndex>
 #include <QSortFilterProxyModel>
 #include <QStringList>
 #include <settings.h>
-#include "bookmark.h"
+#include "models/bookmark.h"
 
-class Bookmarks : public QSortFilterProxyModel
+class TreeViewSourceBookmarks : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    Bookmarks();
+    TreeViewSourceBookmarks();
     static const int COLUMN_NAME = 0;
     static const int COLUMN_TIME = 3;
     QString rootPath();
@@ -50,4 +50,4 @@ private:
     Bookmark getBookmarkForIndex(QModelIndex index) const;
 };
 
-#endif // BOOKMARKS_H
+#endif // TREE_VIEW_SOURCE_BOOKMARKS_H

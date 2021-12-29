@@ -1,4 +1,4 @@
-#include "library.h"
+#include "treeviews/library/treeviewsourcelibrary.h"
 #include "utils.h"
 
 #include <QDir>
@@ -7,9 +7,9 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QChar>
-#include "mediaplayer.h"
+#include "mediaplayer/mediaplayer.h"
 
-Library::Library():
+TreeViewSourceLibrary::TreeViewSourceLibrary():
     QSortFilterProxyModel(),
     EXTENSIONS_SUPPORTED {
         "aac",
@@ -41,31 +41,31 @@ Library::Library():
                 &timerSaveProgressCache,
                 &QTimer::timeout,
                 this,
-                &Library::saveProgressCache,
+                &TreeViewSourceLibrary::saveProgressCache,
                 Qt::DirectConnection
                 );
     QObject::connect(
                 &fileSystemModel,
                 &QFileSystemModel::directoryLoaded,
                 this,
-                &Library::onDirectoryLoaded
+                &TreeViewSourceLibrary::onDirectoryLoaded
                 );
     timerSaveProgressCache.start();
 }
 
-QString Library::rootPath()
+QString TreeViewSourceLibrary::rootPath()
 {
     return fileSystemModel.rootPath();
 }
 
-QModelIndex Library::indexByPath(const QString &path) const
+QModelIndex TreeViewSourceLibrary::indexByPath(const QString &path) const
 {
     return mapFromSource(
                 fileSystemModel.index(path, COLUMN_PATH)
                 );
 }
 
-QString Library::pathByIndex(const QModelIndex &index) const
+QString TreeViewSourceLibrary::pathByIndex(const QModelIndex &index) const
 {
     return fileSystemModel.filePath(
                     mapToSource(
@@ -74,7 +74,7 @@ QString Library::pathByIndex(const QModelIndex &index) const
                     );
 }
 
-QString Library::getSelectedFilePath(int selectionRow, QModelIndex selectionParent) const
+QString TreeViewSourceLibrary::getSelectedFilePath(int selectionRow, QModelIndex selectionParent) const
 {
     QModelIndex selectionIndex = index(selectionRow, COLUMN_PATH, selectionParent);
     if (!selectionIndex.isValid()) {
@@ -92,7 +92,7 @@ QString Library::getSelectedFilePath(int selectionRow, QModelIndex selectionPare
                 );
 }
 
-void Library::notifyUpdate()
+void TreeViewSourceLibrary::notifyUpdate()
 {
     QModelIndex firstCell = index(0, COLUMN_PATH);
     QModelIndex root = firstCell.parent();
@@ -101,23 +101,23 @@ void Library::notifyUpdate()
     emit dataChanged(firstCell, lastCell);
 }
 
-void Library::refresh()
+void TreeViewSourceLibrary::refresh()
 {
     progressCache.clear();
     notifyUpdate();
 }
 
-bool Library::isFolder(QModelIndex index) const
+bool TreeViewSourceLibrary::isFolder(QModelIndex index) const
 {
     return fileSystemModel.isDir(mapToSource(index));
 }
 
-bool Library::isFolder(int sourceRow, const QModelIndex &sourceParent) const
+bool TreeViewSourceLibrary::isFolder(int sourceRow, const QModelIndex &sourceParent) const
 {
     return fileSystemModel.isDir(sourceModel()->index(sourceRow, COLUMN_PATH, sourceParent));
 }
 
-bool Library::filterAcceptsRow(
+bool TreeViewSourceLibrary::filterAcceptsRow(
         int sourceRow,
         const QModelIndex &sourceParent
         ) const {
@@ -137,7 +137,7 @@ bool Library::filterAcceptsRow(
     return false;
 }
 
-QVariant Library::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant TreeViewSourceLibrary::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         switch (section) {
@@ -151,14 +151,14 @@ QVariant Library::headerData(int section, Qt::Orientation orientation, int role)
     return QSortFilterProxyModel::headerData(section, orientation, role);
 }
 
-QString Library::getPathForIndex(const QModelIndex *index) const
+QString TreeViewSourceLibrary::getPathForIndex(const QModelIndex *index) const
 {
     return fileSystemModel.filePath(
                 mapToSource(*index)
                 );
 }
 
-int Library::getFileLength(QString filePath) const
+int TreeViewSourceLibrary::getFileLength(QString filePath) const
 {
     qInfo() << "Calculating length for" << filePath;
     QProcess ffprobe;
@@ -192,7 +192,7 @@ int Library::getFileLength(QString filePath) const
     return result;
 }
 
-QString Library::getProgressFilePath(QFileInfo fileInfo) const
+QString TreeViewSourceLibrary::getProgressFilePath(QFileInfo fileInfo) const
 {
     return fileInfo.path()
             + QDir::separator()
@@ -200,7 +200,7 @@ QString Library::getProgressFilePath(QFileInfo fileInfo) const
             + fileInfo.fileName();
 }
 
-void Library::readProgressFile(QString progressFilePath, Progress *progress) const
+void TreeViewSourceLibrary::readProgressFile(QString progressFilePath, Progress *progress) const
 {
     qInfo() << "Reading progress file" << progressFilePath;
     QFile progressFile(progressFilePath);
@@ -211,7 +211,7 @@ void Library::readProgressFile(QString progressFilePath, Progress *progress) con
     progress->setTotal(progressStringParts[1].toInt());
 }
 
-void Library::saveProgressFile(QFileInfo fileInfo, Progress *progress) const
+void TreeViewSourceLibrary::saveProgressFile(QFileInfo fileInfo, Progress *progress) const
 {
     if (!progress->isChanged())
         return;
@@ -228,21 +228,21 @@ void Library::saveProgressFile(QFileInfo fileInfo, Progress *progress) const
     progress->setChanged(false);
 }
 
-Progress *Library::getProgress(const QModelIndex *index)
+Progress *TreeViewSourceLibrary::getProgress(const QModelIndex *index)
 {
     QString filePath = getPathForIndex(index);
 
     return getProgress(filePath);
 }
 
-void Library::setProgress(QString path, int progress)
+void TreeViewSourceLibrary::setProgress(QString path, int progress)
 {
     Progress *p = progressCache.value(path);
     p->setProgress(progress);
     notifyUpdate();
 }
 
-void Library::setResetProgress(QModelIndex index, bool reset)
+void TreeViewSourceLibrary::setResetProgress(QModelIndex index, bool reset)
 {
     if (!isFolder(index)) {
         Progress *progress = getProgress(&index);
@@ -256,7 +256,7 @@ void Library::setResetProgress(QModelIndex index, bool reset)
     QModelIndex child;
     int row = 0;
     while (1) {
-        child = Library::index(row, COLUMN_PATH, index);
+        child = TreeViewSourceLibrary::index(row, COLUMN_PATH, index);
         if (!child.isValid())
             break;
 
@@ -272,7 +272,7 @@ void Library::setResetProgress(QModelIndex index, bool reset)
     notifyUpdate();
 }
 
-Progress *Library::getProgress(QString filePath)
+Progress *TreeViewSourceLibrary::getProgress(QString filePath)
 {
     if (progressCache.contains(filePath))
         return progressCache.value(filePath);
@@ -299,7 +299,7 @@ Progress *Library::getProgress(QString filePath)
     return progress;
 }
 
-QString Library::convertStringForSortScore(QString string) const
+QString TreeViewSourceLibrary::convertStringForSortScore(QString string) const
 {
     QStringList nameParts;
     bool lastPartWasNumeric = false;
@@ -343,7 +343,7 @@ QString Library::convertStringForSortScore(QString string) const
     return result;
 }
 
-bool Library::lessThan(const QModelIndex &left, const QModelIndex &right) const
+bool TreeViewSourceLibrary::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     if (left.column() != COLUMN_PATH)
         return QSortFilterProxyModel::lessThan(left, right);
@@ -360,25 +360,25 @@ bool Library::lessThan(const QModelIndex &left, const QModelIndex &right) const
     return leftStringForSortScore.compare(rightStringForSortScore) < 0;
 }
 
-QVariant Library::dataForColumnLength(const QModelIndex &index) const
+QVariant TreeViewSourceLibrary::dataForColumnLength(const QModelIndex &index) const
 {
-    Progress *progress = const_cast<Library *>(this)->getProgress(&index);
+    Progress *progress = const_cast<TreeViewSourceLibrary *>(this)->getProgress(&index);
     if (progress->getTotal() == 0)
         return -1; //There has been a problem calculating total
 
     return Utils::formatTime(progress->getTotal());
 }
 
-QVariant Library::dataForColumnProgress(const QModelIndex &index) const
+QVariant TreeViewSourceLibrary::dataForColumnProgress(const QModelIndex &index) const
 {
-    Progress *progress = const_cast<Library *>(this)->getProgress(&index);
+    Progress *progress = const_cast<TreeViewSourceLibrary *>(this)->getProgress(&index);
     if (progress->getTotal() == 0)
         return -1; //There has been a problem calculating total
 
     return progress->getProgressPercent();
 }
 
-void Library::onDirectoryLoaded(const QString &path)
+void TreeViewSourceLibrary::onDirectoryLoaded(const QString &path)
 {
     if (!directoriesLoaded.contains(path))
         directoriesLoaded.append(path);
@@ -386,12 +386,12 @@ void Library::onDirectoryLoaded(const QString &path)
     emit directoryLoaded(path);
 }
 
-bool Library::directoryIsLoaded(const QString path)
+bool TreeViewSourceLibrary::directoryIsLoaded(const QString path)
 {
     return directoriesLoaded.contains(path);
 }
 
-QVariant Library::data(const QModelIndex &index, int role) const
+QVariant TreeViewSourceLibrary::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole) {
         switch(index.column()) {
@@ -405,7 +405,7 @@ QVariant Library::data(const QModelIndex &index, int role) const
     return QSortFilterProxyModel::data(index, role);
 }
 
-void Library::saveProgressCache()
+void TreeViewSourceLibrary::saveProgressCache()
 {
     qInfo() << "Storing progress cache";
     for (auto filePath : progressCache.keys()) {
@@ -413,7 +413,7 @@ void Library::saveProgressCache()
     }
 }
 
-QString Library::getNextFilePath(QString currentPath)
+QString TreeViewSourceLibrary::getNextFilePath(QString currentPath)
 {
     QModelIndex currentIndex = indexByPath(currentPath);
     int row = currentIndex.row();
@@ -422,7 +422,7 @@ QString Library::getNextFilePath(QString currentPath)
     return getSelectedFilePath(++row, currentParent);
 }
 
-void Library::add(QString path)
+void TreeViewSourceLibrary::add(QString path)
 {
     QString destination = Settings::getLibraryPath() + QDir::separator() + QFileInfo(path).fileName();
     qInfo() << "Making symlink from" << path << " to " << destination;

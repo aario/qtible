@@ -15,7 +15,7 @@ TreeViewLibrary::TreeViewLibrary(QWidget *parent): QTreeView(parent)
     setItemDelegate(itemDelegateLibrary );
     setSortingEnabled(true);
     hideColumn(1);
-    sortByColumn(Library::COLUMN_PATH, Qt::SortOrder::AscendingOrder);
+    sortByColumn(TreeViewSourceLibrary::COLUMN_PATH, Qt::SortOrder::AscendingOrder);
     setFocusPolicy(Qt::FocusPolicy::WheelFocus);
     connect(
                 this,
@@ -27,7 +27,7 @@ TreeViewLibrary::TreeViewLibrary(QWidget *parent): QTreeView(parent)
 
 QString TreeViewLibrary::getSelectedFilePath()
 {
-    QModelIndex index = selectedIndexes()[Library::COLUMN_PATH];
+    QModelIndex index = selectedIndexes()[TreeViewSourceLibrary::COLUMN_PATH];
     int row = index.row();
     QModelIndex parent = index.parent();
 
@@ -60,7 +60,7 @@ void TreeViewLibrary::setResetProgressOfSelection(bool reset)
                 ) != QMessageBox::Yes)
         return;
 
-    QModelIndex index = selectedIndexes()[Library::COLUMN_PATH];
+    QModelIndex index = selectedIndexes()[TreeViewSourceLibrary::COLUMN_PATH];
 
     if (library.isFolder(index) && !isExpanded(index)) {
         expand(index);
@@ -70,7 +70,7 @@ void TreeViewLibrary::setResetProgressOfSelection(bool reset)
                         )
                     )) {
             QEventLoop loop;
-            QObject::connect(&library, &Library::directoryLoaded, &loop, &QEventLoop::quit);
+            QObject::connect(&library, &TreeViewSourceLibrary::directoryLoaded, &loop, &QEventLoop::quit);
             loop.exec();
         }
     }
@@ -103,9 +103,9 @@ void TreeViewLibrary::resizeColumns()
     int columnPathWidth = w * COLUMN_WIDTH_PERCENT_PATH / 100;
     int columnLengthWidth = w * COLUMN_WIDTH_PERCENT_LENGTH / 100;
     int columnProgressWidth = w * COLUMN_WIDTH_PERCENT_PROGRESS / 100;
-    setColumnWidth(Library::COLUMN_PATH, columnPathWidth);
-    setColumnWidth(Library::COLUMN_LENGTH, columnLengthWidth);
-    setColumnWidth(Library::COLUMN_PROGRESS, columnProgressWidth);
+    setColumnWidth(TreeViewSourceLibrary::COLUMN_PATH, columnPathWidth);
+    setColumnWidth(TreeViewSourceLibrary::COLUMN_LENGTH, columnLengthWidth);
+    setColumnWidth(TreeViewSourceLibrary::COLUMN_PROGRESS, columnProgressWidth);
 }
 
 void TreeViewLibrary::goToPath(QString path)
@@ -140,7 +140,7 @@ void TreeViewLibrary::removeSelectedFolder()
                 ) != QMessageBox::Yes)
         return;
 
-    QModelIndex index = selectedIndexes()[Library::COLUMN_PATH];
+    QModelIndex index = selectedIndexes()[TreeViewSourceLibrary::COLUMN_PATH];
     QString path = library.pathByIndex(index);
 
     if (isInRootFolder(index) && QFileInfo(path).isSymLink()) {
