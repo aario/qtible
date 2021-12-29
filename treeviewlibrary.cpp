@@ -16,6 +16,13 @@ TreeViewLibrary::TreeViewLibrary(QWidget *parent): QTreeView(parent)
     setSortingEnabled(true);
     hideColumn(1);
     sortByColumn(Library::COLUMN_PATH, Qt::SortOrder::AscendingOrder);
+    setFocusPolicy(Qt::FocusPolicy::WheelFocus);
+    connect(
+                this,
+                &TreeViewLibrary::doubleClicked,
+                this,
+                &TreeViewLibrary::onDoubleClicked
+                );
 }
 
 QString TreeViewLibrary::getSelectedFilePath()
@@ -24,7 +31,7 @@ QString TreeViewLibrary::getSelectedFilePath()
     int row = index.row();
     QModelIndex parent = index.parent();
 
-    return library.getSelectedFilePath(row, parent); //library.getSelectedFilePath();
+    return library.getSelectedFilePath(row, parent);
 }
 
 Progress *TreeViewLibrary::getProgressByPath(QString path)
@@ -140,4 +147,30 @@ void TreeViewLibrary::removeSelectedFolder()
         qInfo() << "Removing symlink from library:" << path;
         QFile::remove(path);
     }
+}
+
+void TreeViewLibrary::openSelected()
+{
+    QString path = getSelectedFilePath();
+    if (path.isEmpty()) {
+        return;
+    }
+
+    emit open(path);
+}
+
+void TreeViewLibrary::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Return) {
+        openSelected();
+        return;
+    }
+
+    QTreeView::keyPressEvent(event);
+}
+
+void TreeViewLibrary::onDoubleClicked(const QModelIndex &index)
+{
+    Q_UNUSED(index)
+    openSelected();
 }

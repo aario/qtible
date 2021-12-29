@@ -39,6 +39,12 @@ MainWindow::MainWindow(QWidget *parent)
                 this,
                 SLOT(onTreeViewLibraryContextMenu(const QPoint &))
                 );
+    connect(
+                ui->treeViewLibrary,
+                SIGNAL(open(QString)),
+                this,
+                SLOT(onTreeViewLibraryOpen(QString))
+                );
     mplayer = new MediaPlayer(
                 this,
                 ui->horizontalSliderVolume,
@@ -199,17 +205,6 @@ void MainWindow::play(QString path, int progress)
                 );
 }
 
-void MainWindow::on_treeViewLibrary_doubleClicked(const QModelIndex &index)
-{
-    Q_UNUSED(index)
-    QString path = ui->treeViewLibrary->getSelectedFilePath();
-    if (path.isEmpty()) {
-        return;
-    }
-
-    play(path);
-}
-
 void MainWindow::on_treeViewBookmarks_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index)
@@ -258,6 +253,11 @@ void MainWindow::onTreeViewLibraryContextMenu(const QPoint &point)
     if (index.isValid() && index.column() == 0) {
         contextMenuLibrary.exec(ui->treeViewLibrary->viewport()->mapToGlobal(point));
     }
+}
+
+void MainWindow::onTreeViewLibraryOpen(QString path)
+{
+    play(path);
 }
 
 void MainWindow::on_actionRename_bookmark_triggered()

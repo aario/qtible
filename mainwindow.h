@@ -24,8 +24,6 @@ private slots:
 
     void on_treeViewBookmarks_doubleClicked(const QModelIndex &index);
 
-    void on_treeViewLibrary_doubleClicked(const QModelIndex &index);
-
     void on_action_refresh_triggered();
 
     void on_splitterMain_splitterMoved(int pos, int index);
@@ -43,6 +41,8 @@ private slots:
     void onTreeViewBookmarksContextMenu(const QPoint &point);
 
     void onTreeViewLibraryContextMenu(const QPoint &point);
+
+    void onTreeViewLibraryOpen(QString path);
 
     void onMplayerBegan();
 
