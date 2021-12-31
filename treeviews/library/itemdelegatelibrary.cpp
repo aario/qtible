@@ -5,7 +5,7 @@
 #include <QStyleOptionProgressBar>
 #include <QObject>
 #include <QApplication>
-#include "library.h"
+#include "treeviewsourcelibrary.h"
 
 ItemDelegateLibrary::ItemDelegateLibrary(QObject *parent): QItemDelegate(parent)
 {
@@ -56,14 +56,14 @@ void ItemDelegateLibrary::paint(
         const QModelIndex &index
         ) const {
     switch (index.column()) {
-    case Library::COLUMN_LENGTH:
+    case TreeViewSourceLibrary::COLUMN_LENGTH:
         paintLength(
                     painter,
                     option,
                     index
                     );
         return;
-    case Library::COLUMN_PROGRESS:
+    case TreeViewSourceLibrary::COLUMN_PROGRESS:
         paintProgress(
                     painter,
                     option,
