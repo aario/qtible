@@ -67,6 +67,7 @@ void MediaPlayer::open(
         throw std::runtime_error("can't create mpv instance");
 
     this->path = path;
+    this->title = "";
 
     loaded = true;
 
