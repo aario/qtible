@@ -925,6 +925,102 @@ border-style: solid;
                </layout>
               </item>
               <item>
+               <layout class="QHBoxLayout" name="horizontalLayoutStopAfterCurrent">
+                <item>
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonStopAfterCurrentWithIcon">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777209</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>24</pointsize>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">:hover:!pressed {
+border-style: solid;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="resources.qrc">
+                    <normaloff>:/graphics/images/right-to-bracket.svg</normaloff>:/graphics/images/right-to-bracket.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButtonStopAfterCurrent">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">:hover:!pressed {
+border-style: solid;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>Stop after current</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>false</bool>
+                  </property>
+                  <property name="flat">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_8">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
                <spacer name="verticalSpacerPlayerButtonsBottom">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -1284,17 +1380,17 @@ border-style: solid;
   <customwidget>
    <class>TreeViewLibrary</class>
    <extends>QTreeView</extends>
-   <header>treeviewlibrary.h</header>
+   <header>treeviews/library/treeviewlibrary.h</header>
   </customwidget>
   <customwidget>
    <class>LabelSeekBar</class>
    <extends>QLabel</extends>
-   <header>labelseekbar.h</header>
+   <header>mediaplayer/labelseekbar.h</header>
   </customwidget>
   <customwidget>
    <class>TreeViewBookmarks</class>
    <extends>QTreeView</extends>
-   <header>treeviewbookmarks.h</header>
+   <header>treeviews/bookmarks/treeviewbookmarks.h</header>
   </customwidget>
  </customwidgets>
  <resources>

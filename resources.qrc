@@ -17,5 +17,6 @@
         <file>images/folder-tree.svg</file>
         <file>images/spectrom-empty.svg</file>
         <file>images/icon.svg</file>
+        <file>images/right-to-bracket.svg</file>
     </qresource>
 </RCC>

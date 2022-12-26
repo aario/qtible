@@ -55,6 +55,7 @@ private slots:
     void onMplayerAddBookmark(QString path, QString name, int seconds);
 
     void on_tabWidgetLeft_currentChanged(int index);
+
     void on_actionE_xigt_triggered();
 
     void on_actionAbout_triggered();
@@ -62,6 +63,8 @@ private slots:
     void on_actionAbout_Qt_triggered();
 
     void on_actionDonate_triggered();
+
+    void on_pushButtonStopAfterCurrent_clicked();
 
 private:
     const QString APPLICATION_TITLE = "Qtible";

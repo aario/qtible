@@ -59,7 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
                 ui->pushButtonPlayerPlayPause,
                 ui->pushButtonPlayerFastForward,
                 ui->labelPlayerTitle,
-                ui->pushButtonAddBookmark
+                ui->pushButtonAddBookmark,
+                ui->pushButtonStopAfterCurrentWithIcon
                 );
     connect(
                 mplayer,
@@ -289,17 +290,22 @@ void MainWindow::onMplayerBegan()
 {
     setWindowTitle(APPLICATION_TITLE + " | " + mplayer->getTitle());
     ui->pushButtonAddBookMarkWithIcon->setEnabled(true);
+    ui->pushButtonStopAfterCurrent->setEnabled(true);
 }
 
 void MainWindow::onMplayerFinished(QString currentPath)
 {
     setWindowTitle(APPLICATION_TITLE);
+    if (this->mplayer->shouldStopAfterCurrent()) {
+        return;
+    }
     QString nextPath = ui->treeViewLibrary->getNextFilePath(currentPath);
     if (nextPath.isEmpty()) {
         return;
     }
 
     ui->pushButtonAddBookMarkWithIcon->setEnabled(false);
+    ui->pushButtonStopAfterCurrentWithIcon->setEnabled(false);
 
     play(nextPath, 0);
 }
@@ -332,6 +338,12 @@ void MainWindow::onMplayerAddBookmark(
 void MainWindow::on_pushButtonAddBookMarkWithIcon_clicked()
 {
     emit ui->pushButtonAddBookmark->clicked();
+}
+
+void MainWindow::on_pushButtonStopAfterCurrent_clicked()
+{
+    ui->pushButtonStopAfterCurrentWithIcon->setChecked(!ui->pushButtonStopAfterCurrentWithIcon->isChecked());
+    emit ui->pushButtonStopAfterCurrentWithIcon->clicked();
 }
 
 void MainWindow::on_tabWidgetLeft_currentChanged(int index)

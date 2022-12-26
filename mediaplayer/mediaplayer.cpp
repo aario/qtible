@@ -24,7 +24,8 @@ MediaPlayer::MediaPlayer(QObject *parent,
                          QPushButton *pushButtonPlayerPlayPause,
                          QPushButton *pushButtonPlayerFastForward,
                          QLabel *labelTitle,
-                         QPushButton *pushButtonAddBookmark
+                         QPushButton *pushButtonAddBookmark,
+                         QPushButton *pushButtonStopAfterCurrent
                          ): QObject(parent)
 {
     this->sliderVolume = sliderVolume;
@@ -41,6 +42,7 @@ MediaPlayer::MediaPlayer(QObject *parent,
     this->pushButtonPlayerFastForward = pushButtonPlayerFastForward;
     this->labelTitle = labelTitle;
     this->pushButtonAddBookmark = pushButtonAddBookmark;
+    this->pushButtonStopAfterCurrent = pushButtonStopAfterCurrent;
 }
 
 void MediaPlayer::destroyMpv()
@@ -130,6 +132,11 @@ void MediaPlayer::play()
     onPlayPauseClicked();
 }
 
+bool MediaPlayer::shouldStopAfterCurrent()
+{
+    return this->stopAfterCurrent;
+}
+
 QString MediaPlayer::getTitle()
 {
     if (title.length())
@@ -189,6 +196,7 @@ void MediaPlayer::openUI()
     pushButtonPlayerFastForward->setEnabled(true);
     labelTitle->setText(getTitle());
     pushButtonAddBookmark->setEnabled(true);
+    pushButtonStopAfterCurrent->setEnabled(true);
     pushButtonVolumeMute->setEnabled(true);
     pushButtonSpeedReset->setEnabled(true);
     sliderVolume->setEnabled(true);
@@ -206,6 +214,7 @@ void MediaPlayer::openUI()
     QObject::connect(pushButtonPlayerPlayPause, &QPushButton::clicked, this, &MediaPlayer::onPlayPauseClicked);
     QObject::connect(pushButtonPlayerFastForward, &QPushButton::clicked, this, &MediaPlayer::onFastForwardClicked);
     QObject::connect(pushButtonAddBookmark, &QPushButton::clicked, this, &MediaPlayer::onAddBookmarkClicked);
+    QObject::connect(pushButtonStopAfterCurrent, &QPushButton::clicked, this, &MediaPlayer::onStopAfterCurrentClicked);
     QObject::connect(&timerUpdateUI, &QTimer::timeout, this, &MediaPlayer::onTimerUpdateUI, Qt::DirectConnection);
     timerUpdateUI.start();
     emit began();
@@ -224,6 +233,7 @@ void MediaPlayer::closeUI()
     pushButtonPlayerFastForward->setEnabled(false);
     labelTitle->setText("");
     pushButtonAddBookmark->setEnabled(false);
+    pushButtonStopAfterCurrent->setEnabled(false);
     pushButtonVolumeMute->setEnabled(false);
     pushButtonSpeedReset->setEnabled(false);
     sliderVolume->setEnabled(false);
@@ -343,6 +353,11 @@ void MediaPlayer::onAddBookmarkClicked()
                 getTitle(),
                 currentPositionSeconds
                 );
+}
+
+void MediaPlayer::onStopAfterCurrentClicked()
+{
+    this->stopAfterCurrent = this->pushButtonStopAfterCurrent->isChecked();
 }
 
 void MediaPlayer::setVolume(int64_t Volume)

@@ -30,7 +30,8 @@ public:
             QPushButton *pushButtonPlayerPlayPause,
             QPushButton *pushButtonPlayerFastForward,
             QLabel *labelTitle,
-            QPushButton *pushButtonAddBookmark
+            QPushButton *pushButtonAddBookmark,
+            QPushButton *pushButtonStopAfterCurrent
             );
     static const int SKIP_SECONDS = 5;
     void stop();
@@ -40,6 +41,7 @@ public:
     QString getTitle();
     void open(QString path, int progress, int length);
     void play();
+    bool shouldStopAfterCurrent();
 public slots:
     void sliderVolumeChanged(int64_t Position);
     void onVolumeMuteClicked();
@@ -90,12 +92,14 @@ private:
     QPushButton *pushButtonPlayerFastForward;
     QLabel *labelTitle;
     QPushButton *pushButtonAddBookmark;
+    QPushButton *pushButtonStopAfterCurrent;
     QTimer timerUpdateUI;
     int expectedPositionPercent = -1;
     float length = 0;
     int volumeBeforeMute = 100;
     bool playing = false;
     bool loaded = false;
+    bool stopAfterCurrent = false;
     float pausedPosition = 0;
     float lastPositionUpdatedOnUI = 0;
     float lastLengthUpdatedOnUI = 0;
@@ -120,6 +124,7 @@ private slots:
     void onMpvEndFile();
     void onMpvTimePosChanged(double timePos);
     void onAddBookmarkClicked();
+    void onStopAfterCurrentClicked();
 };
 
 #endif // MEDIAPLAYER_H
